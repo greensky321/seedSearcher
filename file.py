@@ -12,11 +12,11 @@ time.sleep(2)
 
 #Top Left of screen and size
 #screen = (20,150,2776,1631)
-screen = (10,110,1855,920)
+screen = (20,120,1845,910)
 #                1378,740
 #screen = (20,150,1000,1000)
 
-screenDivider = 2 # screen divider is used if Amidst has multiple pixels dedicated to the same area
+screenDivider = 1 # screen divider is used if Amidst has multiple pixels dedicated to the same area
 command = "ctrl"
 
 def main():
@@ -80,7 +80,7 @@ def getScreenshots(region = screen):
     screenshots["empty"] = pyautogui.screenshot(region = region)
 
     pyautogui.hotkey(command, '3')
-    screenshots["stronghold"] = pyautogui.screenshot(region = region)
+    screenshots["stronghold"] = pyautogui.screenshot('test.png',region = region)
     pyautogui.hotkey(command, '3')
 
     return screenshots
@@ -312,5 +312,5 @@ def clamp (x, lower, upper):
 # Call main from the bottom so everything else is defined
 if __name__ == "__main__":
     colorProfile = getProfile(configFile("biomeProfile.json"))
-    #main()
-    saveFullScreenshot()
+    main()
+    #saveFullScreenshot()
