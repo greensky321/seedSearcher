@@ -12,11 +12,12 @@ time.sleep(2)
 
 #Top Left of screen and size
 #screen = (20,150,2776,1631)
-screen = (20,150,2756,1481)
+screen = (10,110,1855,920)
 #                1378,740
 #screen = (20,150,1000,1000)
 
 screenDivider = 2 # screen divider is used if Amidst has multiple pixels dedicated to the same area
+command = "ctrl"
 
 def main():
     print("SettingUp")
@@ -78,9 +79,9 @@ def getScreenshots(region = screen):
     
     screenshots["empty"] = pyautogui.screenshot(region = region)
 
-    pyautogui.hotkey('command', '3')
+    pyautogui.hotkey(command, '3')
     screenshots["stronghold"] = pyautogui.screenshot(region = region)
-    pyautogui.hotkey('command', '3')
+    pyautogui.hotkey(command, '3')
 
     return screenshots
 
@@ -100,7 +101,7 @@ def convertToBiomeArray(screenshots):
 
 
 def saveFullScreenshot():
-    pyautogui.hotkey('command', '2','3', '4', '5', '7')
+    pyautogui.hotkey(command, '2','3', '4', '5', '7')
 
 
     seed = getSeed()
@@ -114,7 +115,7 @@ def saveFullScreenshot():
     fle = outputFile(foldername,filename)
     pyautogui.screenshot(fle) # Full Screen Image for saving
 
-    pyautogui.hotkey('command', '2','3', '4', '5', '7')
+    pyautogui.hotkey(command, '2','3', '4', '5', '7')
 
 
 
@@ -228,9 +229,9 @@ def OldScreenshots():
 '''
 
 def switchApp():
-    pyautogui.keyDown('command')
+    pyautogui.keyDown('alt')
     pyautogui.press('tab')
-    pyautogui.keyUp('command') 
+    pyautogui.keyUp('alt') 
 
 
 # Folder Functions
@@ -265,7 +266,7 @@ def OldScreenshots():
             
             sX=str(x)
             sZ=str(z)
-            pyautogui.hotkey('command', 'shift', 'c')
+            pyautogui.hotkey(command, 'shift', 'c')
             pyautogui.typewrite(sWidth + ',' + sHeight+'\n')
             time.sleep(10)
             filename = sX + ', ' + sZ+'.png'
@@ -276,23 +277,23 @@ def OldScreenshots():
 
 # Amidst Functions
 def moveTo(x, z):
-    pyautogui.hotkey('command', 'shift', 'c')
+    pyautogui.hotkey(command, 'shift', 'c')
     pyautogui.typewrite("{0}, {1}\n".format(x, z))
 
 def setZoom():
     if False:
         for i in range(30):
-            pyautogui.hotkey('command', 'k')
-        for i in range(19):
-            pyautogui.hotkey('command', 'j')
+            pyautogui.hotkey(command, 'k')
+        for i in range(20):
+            pyautogui.hotkey(command, 'j')
 
 
 def newSeed():
-    pyautogui.hotkey('command', 'r')
+    pyautogui.hotkey(command, 'r')
 
 
 def getSeed():
-    pyautogui.hotkey('command', 'c')
+    pyautogui.hotkey(command, 'c')
     time.sleep(1)
     return pyperclip.paste()
 
@@ -311,5 +312,5 @@ def clamp (x, lower, upper):
 # Call main from the bottom so everything else is defined
 if __name__ == "__main__":
     colorProfile = getProfile(configFile("biomeProfile.json"))
-    main()
-    #saveFullScreenshot()
+    #main()
+    saveFullScreenshot()
